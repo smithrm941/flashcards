@@ -1,0 +1,19 @@
+{
+  "name": "flashcards",
+  "version": "1.0.0",
+  "description": "flashcards app and microservice",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smithrm941/flashcards.git"
+  },
+  "author": "Rhonda Smith",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/smithrm941/flashcards/issues"
+  },
+  "homepage": "https://github.com/smithrm941/flashcards#readme"
+}
