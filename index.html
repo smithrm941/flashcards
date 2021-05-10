@@ -16,14 +16,30 @@
     <div onclick="myFunction()" class="flashcard-link">
       <!-- <a href="./cardmaker.html"> -->
       <img src="addcardbox.jpg" alt="Link to flashcard creation page">
-      <h3>Make a new set of cards!</h3>
+      <h3>Click the + to add a flashcard!</h3>
       </a>
     </div>
-    <div id="demo">
+    <div id="creationSuccess">
     </div>
+
+    <!-- Trigger/Open The Modal -->
+    <div id="clickForCards">
+      Click <button id="myBtn">Here</button> to use them!
     </div>
-    <div id="demo2">
-    </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p id="cardFront"></p>
+        <p id="cardBack"></p>
+        <button id="frontButton">Front</button>
+        <button id="backButton">Back</button>
+      </div>
+
+</div>
   </body>
   <script src="index.js"></script>
 </html>
