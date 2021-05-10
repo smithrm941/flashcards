@@ -1,21 +1,18 @@
 
+// Flashcards will be added as objects collected into an array:
 flashcardCollection = [];
 flashcard = {
   front: "",
   back: ""
 }
+
+// The number of flashcards created will be tracked and displayed to the user
 flashcardCount = 0;
 
 function myFunction() {
   // prompts made with this tutorial: https://www.w3schools.com/js/tryit.asp?filename=tryjs_prompt
   var txt;
   var front = prompt("Front of card:");
-  if (front == null || front == "") {
-    txt = "User cancelled the prompt.";
-  } else {
-    txt = "One card with " + front + " has been added to the flashcard collection";
-  }
-
 
   var back = prompt("Back of card:");
   if (back == null || back == "") {
@@ -35,7 +32,7 @@ function myFunction() {
   document.getElementById("clickForCards").style.display = "block";
 }
 
-// Modal code from W3 schools: https://www.w3schools.com/howto/howto_css_modals.asp
+// Modal code based on info from W3 schools: https://www.w3schools.com/howto/howto_css_modals.asp
 // Get the modal
 var modal = document.getElementById("myModal");
 
@@ -45,43 +42,58 @@ var cardDisplayButton = document.getElementById("clickForCards");
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
-// When the user clicks on the button, open the modal
+// When the user clicks on the button, open the modal to a random flashcard
 cardDisplayButton.onclick = function() {
   modal.style.display = "block";
+  cardToDisplay = flashcardCollection[Math.floor(Math.random() * flashcardCollection.length)]
   document.getElementById("cardFront").style.display = "block";
-  document.getElementById("cardFront").innerHTML = flashcardCollection[0].front;
-}
+  document.getElementById("cardFront").innerHTML = cardToDisplay.front;
 
-// Get the buttons that flips cards
-var frontButton = document.getElementById("frontButton");
-var backButton = document.getElementById("backButton");
+  // Get the buttons that toggle between displaying "front" and "back" of cards:
+  var frontButton = document.getElementById("frontButton");
+  var backButton = document.getElementById("backButton");
+  var anotherCard = document.getElementById("anotherCard");
 
 
-// When user clicks the button, show info from back of cards
-backButton.onclick = function() {
-  if (document.getElementById("cardFront").style.display = "block") {
-    document.getElementById("cardFront").style.display = "none";
-    document.getElementById("cardBack").style.display = "block";
-    document.getElementById("cardBack").innerHTML = flashcardCollection[0].back;
+  // When user clicks "back" button, show info from "back" of card:
+  backButton.onclick = function() {
+    if (document.getElementById("cardFront").style.display = "block") {
+      document.getElementById("cardFront").style.display = "none";
+      document.getElementById("cardBack").style.display = "block";
+      document.getElementById("cardBack").innerHTML = cardToDisplay.back;
+    }
   }
-}
 
-frontButton.onclick = function() {
-  if (document.getElementById("cardBack").style.display = "block") {
+  // When user clicks "front" button, show info from "front" of card:
+  frontButton.onclick = function() {
+    if (document.getElementById("cardBack").style.display = "block") {
+      document.getElementById("cardBack").style.display = "none";
+      document.getElementById("cardFront").style.display = "block";
+      document.getElementById("cardFront").innerHTML = cardToDisplay.front;
+    }
+  }
+
+  //When user clicks "another card" button, a card will be randomly chosen again:
+  anotherCard.onclick = function() {
+    cardToDisplay = flashcardCollection[Math.floor(Math.random() * flashcardCollection.length)]
+    document.getElementById("cardFront").innerHTML = cardToDisplay.front;
     document.getElementById("cardBack").style.display = "none";
     document.getElementById("cardFront").style.display = "block";
-    document.getElementById("cardFront").innerHTML = flashcardCollection[0].front;
+    document.getElementById("cardFront").innerHTML = cardToDisplay.front;
+
   }
-}
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
+
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function() {
     modal.style.display = "none";
+  }
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
   }
 }
