@@ -49,10 +49,12 @@ cardDisplayButton.onclick = function() {
   document.getElementById("cardFront").style.display = "block";
   document.getElementById("cardFront").innerHTML = cardToDisplay.front;
 
-  // Get the buttons that toggle between displaying "front" and "back" of cards:
+  // Get the buttons that toggle between card related displays:
   var frontButton = document.getElementById("frontButton");
   var backButton = document.getElementById("backButton");
   var anotherCard = document.getElementById("anotherCard");
+  var editCard = document.getElementById("editCard");
+
 
 
   // When user clicks "back" button, show info from "back" of card:
@@ -72,6 +74,24 @@ cardDisplayButton.onclick = function() {
       document.getElementById("cardFront").innerHTML = cardToDisplay.front;
     }
   }
+
+  // if front of a card is on display, clicking edit will allow user to edit front
+  if (document.getElementById("cardFront").style.display = "block") {
+    editCard.onclick = function() {
+      // document.getElementById("cardFront").innerHTML = cardToDisplay.front;
+      console.log("display the edit front box!");
+    }
+  }
+
+  // if back of a card is on display, clicking edit will allow user to edit back
+  if (document.getElementById("cardBack").style.display = "block") {
+    editCard.onclick = function() {
+      // document.getElementById("cardFront").innerHTML = cardToDisplay.front;
+      console.log("display the edit back box!");
+    }
+  }
+
+
 
   //When user clicks "another card" button, a card will be randomly chosen again:
   anotherCard.onclick = function() {
