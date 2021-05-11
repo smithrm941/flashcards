@@ -2,6 +2,7 @@
 // Flashcards will be added as objects collected into an array:
 flashcardCollection = [];
 flashcard = {
+  numberInSet: 0,
   front: "",
   back: ""
 }
@@ -16,20 +17,18 @@ function myFunction() {
 
   var back = prompt("Back of card:");
   if (back == null || back == "") {
-    txt = "You've added " + flashcardCount + " flashcards to your set!";
+    txt = "You've added " + flashcardCount + " flashcard(s) to your set!";
   } else {
     flashcard = Object.create(flashcard)
     flashcard.front = front;
     flashcard.back = back;
     flashcardCollection.push(flashcard)
     flashcardCount += 1;
+    flashcard.numberInSet = flashcardCount;
     txt = "You've added " + flashcardCount + " flashcards to your set!";
+    document.getElementById("creationSuccess").innerHTML = txt;
+    document.getElementById("clickForCards").style.display = "block";
   }
-  document.getElementById("creationSuccess").innerHTML = txt;
-  flashcardCollection.forEach(card => {
-
-  })
-  document.getElementById("clickForCards").style.display = "block";
 }
 
 // Modal code based on info from W3 schools: https://www.w3schools.com/howto/howto_css_modals.asp
@@ -46,6 +45,7 @@ var span = document.getElementsByClassName("close")[0];
 cardDisplayButton.onclick = function() {
   modal.style.display = "block";
   cardToDisplay = flashcardCollection[Math.floor(Math.random() * flashcardCollection.length)]
+  document.getElementById("cardBack").style.display = "none";
   document.getElementById("cardFront").style.display = "block";
   document.getElementById("cardFront").innerHTML = cardToDisplay.front;
 
@@ -53,9 +53,8 @@ cardDisplayButton.onclick = function() {
   var frontButton = document.getElementById("frontButton");
   var backButton = document.getElementById("backButton");
   var anotherCard = document.getElementById("anotherCard");
-  var editCard = document.getElementById("editCard");
-
-
+  var editFront = document.getElementById("editFront");
+  var editBack = document.getElementById("editBack");
 
   // When user clicks "back" button, show info from "back" of card:
   backButton.onclick = function() {
@@ -75,20 +74,26 @@ cardDisplayButton.onclick = function() {
     }
   }
 
-  // if front of a card is on display, clicking edit will allow user to edit front
-  if (document.getElementById("cardFront").style.display = "block") {
-    editCard.onclick = function() {
-      // document.getElementById("cardFront").innerHTML = cardToDisplay.front;
-      console.log("display the edit front box!");
-    }
+  // Allow user to edit front of a card
+  editFront.onclick = function() {
+      var editFrontPrompt = prompt("Edit front of card - change " + cardToDisplay.front + " to:")
+      if (editFrontPrompt) {
+        cardToDisplay.front = editFrontPrompt;
+        if (document.getElementById("cardFront").style.display = "block") {
+          document.getElementById("cardFront").innerHTML = cardToDisplay.front;
+        }
+      }
   }
 
-  // if back of a card is on display, clicking edit will allow user to edit back
-  if (document.getElementById("cardBack").style.display = "block") {
-    editCard.onclick = function() {
-      // document.getElementById("cardFront").innerHTML = cardToDisplay.front;
-      console.log("display the edit back box!");
-    }
+  // Allow user to edit back of a card
+  editBack.onclick = function() {
+      var editBackPrompt = prompt("Edit back of card - change " + cardToDisplay.back + " to:")
+      if (editBackPrompt) {
+        cardToDisplay.back = editBackPrompt;
+        if (document.getElementById("cardBack").style.display = "block") {
+          document.getElementById("cardBack").innerHTML = cardToDisplay.back;
+        } 
+      }
   }
 
 
