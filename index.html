@@ -14,8 +14,34 @@
      <h3 id="header-link">Sign-Up</h3>
     </div>
     <div class="flashcard-link">
-      <img src="addcardbox.jpg" alt="Link to flashcard creation page">
-      <h3>Make a new set of cards!</h3>
+      <img onclick="myFunction()" src="addcardbox.jpg" alt="Link to flashcard creation prompt">
+      <h3>Click the + to add a flashcard!</h3>
+      </a>
     </div>
+    <div id="creationSuccess">
+    </div>
+
+    <!-- Trigger/Open The Modal -->
+    <div id="clickForCards">
+      Click <button id="myBtn">Here</button> to use them!
+    </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p id="cardFront"></p>
+        <p id="cardBack"></p>
+        <button id="frontButton">Front</button>
+        <button id="backButton">Back</button>
+        <button id="editFront">Edit Front</button>
+        <button id="editBack">Edit Back</button>
+        <button id="anotherCard">Another Card</button>
+      </div>
+
+</div>
   </body>
+  <script src="index.js"></script>
 </html>
