@@ -47,7 +47,7 @@ cardDisplayButton.onclick = function() {
   cardToDisplay = flashcardCollection[Math.floor(Math.random() * flashcardCollection.length)]
   document.getElementById("cardBack").style.display = "none";
   document.getElementById("cardFront").style.display = "block";
-  document.getElementById("cardFront").innerHTML = cardToDisplay.front;
+  document.getElementById("cardFront").innerHTML = "<b>Front:</b> " + cardToDisplay.front;
 
   // Get the buttons that toggle between card related displays:
   var frontButton = document.getElementById("frontButton");
@@ -61,7 +61,7 @@ cardDisplayButton.onclick = function() {
     if (document.getElementById("cardFront").style.display = "block") {
       document.getElementById("cardFront").style.display = "none";
       document.getElementById("cardBack").style.display = "block";
-      document.getElementById("cardBack").innerHTML = cardToDisplay.back;
+      document.getElementById("cardBack").innerHTML = "<b>Back:</b> " + cardToDisplay.back;
     }
   }
 
@@ -70,7 +70,7 @@ cardDisplayButton.onclick = function() {
     if (document.getElementById("cardBack").style.display = "block") {
       document.getElementById("cardBack").style.display = "none";
       document.getElementById("cardFront").style.display = "block";
-      document.getElementById("cardFront").innerHTML = cardToDisplay.front;
+      document.getElementById("cardFront").innerHTML = "<b>Front:</b> " + cardToDisplay.front;
     }
   }
 
@@ -80,7 +80,7 @@ cardDisplayButton.onclick = function() {
       if (editFrontPrompt) {
         cardToDisplay.front = editFrontPrompt;
         if (document.getElementById("cardFront").style.display = "block") {
-          document.getElementById("cardFront").innerHTML = cardToDisplay.front;
+          document.getElementById("cardFront").innerHTML = "<b>Front:</b> " + cardToDisplay.front;
         }
       }
   }
@@ -91,12 +91,10 @@ cardDisplayButton.onclick = function() {
       if (editBackPrompt) {
         cardToDisplay.back = editBackPrompt;
         if (document.getElementById("cardBack").style.display = "block") {
-          document.getElementById("cardBack").innerHTML = cardToDisplay.back;
-        } 
+          document.getElementById("cardBack").innerHTML = "<b>Back:</b> " + cardToDisplay.back;
+        }
       }
   }
-
-
 
   //When user clicks "another card" button, a card will be randomly chosen again:
   anotherCard.onclick = function() {
@@ -107,8 +105,6 @@ cardDisplayButton.onclick = function() {
     document.getElementById("cardFront").innerHTML = cardToDisplay.front;
 
   }
-
-
 
   // When the user clicks on <span> (x), close the modal
   span.onclick = function() {
