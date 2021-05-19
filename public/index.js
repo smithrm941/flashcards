@@ -13,6 +13,11 @@ flashcardCount = 0;
 function myFunction() {
   // prompts made with this tutorial: https://www.w3schools.com/js/tryit.asp?filename=tryjs_prompt
   var txt;
+
+  // As of right now, cards are created through information entered by the user
+  // into prompts for the "front" and "back" of a card. Later there will also be
+  // an option to get data from a scraper service instead
+  
   var front = prompt("Front of card:");
 
   var back = prompt("Back of card:");
