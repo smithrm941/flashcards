@@ -10,45 +10,65 @@ flashcard = {
 // The number of flashcards created will be tracked and displayed to the user
 flashcardCount = 0;
 
+// The function each of the flashcard types will use to create cards
+// Types of cards created depends on what user clicks:
+function createFlashcard(front, back) {
+  flashcard = Object.create(flashcard)
+  flashcard.front = front;
+  flashcard.back = back;
+  flashcardCollection.push(flashcard)
+  flashcardCount += 1;
+  flashcard.numberInSet = flashcardCount;
+  txt = "You've added " + flashcardCount + " flashcards to your set!";
+  document.getElementById("creationSuccess").innerHTML = txt;
+  document.getElementById("clickForCards").style.display = "block";
+}
+
+// create flashcards by typing information into prompts that pop up on the screen
 function flashcardTyped() {
   // prompts made with this tutorial: https://www.w3schools.com/js/tryit.asp?filename=tryjs_prompt
   var txt;
-
-  // As of right now, cards are created through information entered by the user
-  // into prompts for the "front" and "back" of a card. Later there will also be
-  // an option to get data from a scraper service instead
-
   var front = prompt("Front of card:");
-
   var back = prompt("Back of card:");
+  // only create a card if both front and back are created
   if (back == null || back == "") {
     txt = "You've added " + flashcardCount + " flashcard(s) to your set!";
   } else {
-    flashcard = Object.create(flashcard)
-    flashcard.front = front;
-    flashcard.back = back;
-    flashcardCollection.push(flashcard)
-    flashcardCount += 1;
-    flashcard.numberInSet = flashcardCount;
-    txt = "You've added " + flashcardCount + " flashcards to your set!";
-    document.getElementById("creationSuccess").innerHTML = txt;
-    document.getElementById("clickForCards").style.display = "block";
+    createFlashcard(front, back)
   }
 }
 
+// create flashcards using wikipedia scraping service by Risa Fletcher
 function flashcardWiki() {
-  var front = prompt("Wikipedia Search:");
-
-  var back = alert("Adding some wikipedia page stuff to back!");
+  var front = prompt("Search Wikipedia:");
+  // only add a flashcard if search is done, no new card if search is cancelled
+  if (front) {
+    fetch('https://wikipedia-scraper-312805.wl.r.appspot.com/search/' + front)
+      .then(response => response.json())
+      .then(data => createFlashcard(data.title, data.summary)
+    );
+  }
 }
 
+// WIP: create flashcards using movie sentiment service by Mateo Estrada
 function flashcardMovie() {
-  var front = prompt("Movie Search:");
+  var movieTitle = prompt("Enter a movie title: ");
+  var movieLines = prompt("Enter some movie lines: ");
 
-  var back = alert("Adding some movie sentiment stuff to back!");
+  // only add a flashcard if search is done, no new card if search is cancelled
+  if (movieTitle && movieLines) {
+    fetch('https://vibe-api-service.herokuapp.com/sentiment-analysis-long', {
+      method: "POST",
+      body: {"title": movieTitle, "input_text": movieLines}
+    })
+        .then(response => response.json())
+        .then(data => console.log(data));
+  }
+  alert("Adding some movie sentiment stuff to back!");
 
 }
 
+// The actual cards and their display:
 // Modal code based on info from W3 schools: https://www.w3schools.com/howto/howto_css_modals.asp
 // Get the modal
 var modal = document.getElementById("myModal");
@@ -117,10 +137,9 @@ cardDisplayButton.onclick = function() {
   //When user clicks "another card" button, a card will be randomly chosen again:
   anotherCard.onclick = function() {
     cardToDisplay = flashcardCollection[Math.floor(Math.random() * flashcardCollection.length)]
-    document.getElementById("cardFront").innerHTML = cardToDisplay.front;
     document.getElementById("cardBack").style.display = "none";
     document.getElementById("cardFront").style.display = "block";
-    document.getElementById("cardFront").innerHTML = cardToDisplay.front;
+    document.getElementById("cardFront").innerHTML = "<b>Front:</b> " + cardToDisplay.front;
 
   }
 
