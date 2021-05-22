@@ -32,6 +32,17 @@ a:hover, a:active { text-decoration: none; color:black }
   display: none;
 }
 
+/*Column and row styling from
+https://www.w3schools.com/howto/howto_css_images_side_by_side.asp*/
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 33.33%;
+  padding: 5px;
+}
+
 /* The Modal (background) */
 .modal {
   display: none; /* Hidden by default */
