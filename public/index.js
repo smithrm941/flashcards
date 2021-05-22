@@ -10,14 +10,14 @@ flashcard = {
 // The number of flashcards created will be tracked and displayed to the user
 flashcardCount = 0;
 
-function myFunction() {
+function flashcardTyped() {
   // prompts made with this tutorial: https://www.w3schools.com/js/tryit.asp?filename=tryjs_prompt
   var txt;
 
   // As of right now, cards are created through information entered by the user
   // into prompts for the "front" and "back" of a card. Later there will also be
   // an option to get data from a scraper service instead
-  
+
   var front = prompt("Front of card:");
 
   var back = prompt("Back of card:");
@@ -34,6 +34,19 @@ function myFunction() {
     document.getElementById("creationSuccess").innerHTML = txt;
     document.getElementById("clickForCards").style.display = "block";
   }
+}
+
+function flashcardWiki() {
+  var front = prompt("Wikipedia Search:");
+
+  var back = alert("Adding some wikipedia page stuff to back!");
+}
+
+function flashcardMovie() {
+  var front = prompt("Movie Search:");
+
+  var back = alert("Adding some movie sentiment stuff to back!");
+
 }
 
 // Modal code based on info from W3 schools: https://www.w3schools.com/howto/howto_css_modals.asp
