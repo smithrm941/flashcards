@@ -79,7 +79,7 @@ function flashcardMovie() {
 // The actual cards and their display:
 // Modal code based on info from W3 schools: https://www.w3schools.com/howto/howto_css_modals.asp
 // Get the modal
-var modal = document.getElementById("myModal");
+var cardModal = document.getElementById("cardModal");
 
 // Get the button that opens the modal, which will display cards
 var cardDisplayButton = document.getElementById("clickForCards");
@@ -89,7 +89,7 @@ var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on the button, open the modal to a random flashcard
 cardDisplayButton.onclick = function() {
-  modal.style.display = "block";
+  cardModal.style.display = "block";
   cardToDisplay = flashcardCollection[Math.floor(Math.random() * flashcardCollection.length)]
   document.getElementById("cardBack").style.display = "none";
   document.getElementById("cardFront").style.display = "block";
@@ -153,13 +153,13 @@ cardDisplayButton.onclick = function() {
 
   // When the user clicks on <span> (x), close the modal
   span.onclick = function() {
-    modal.style.display = "none";
+    cardModal.style.display = "none";
   }
 
   // When the user clicks anywhere outside of the modal, close it
   window.onclick = function(event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
+    if (event.target == cardModal) {
+      cardModal.style.display = "none";
     }
   }
 }
