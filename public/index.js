@@ -19,6 +19,7 @@ function createFlashcard(front, back) {
   flashcardCount += 1;
   flashcard.numberInSet = flashcardCount;
   txt = "You've added " + flashcardCount + " flashcards to your set!";
+  document.getElementById("creationSuccess").style.display = "block";
   document.getElementById("creationSuccess").innerHTML = txt;
   document.getElementById("clickForCards").style.display = "block";
 }
@@ -167,11 +168,34 @@ cardDisplayButton.onclick = function() {
     document.getElementById("cardFront").innerHTML = "<b>Front:</b> " + cardToDisplay.front;
   }
 
+  // delete card function (based on code from https://love2dev.com/blog/javascript-remove-from-array/)
+  function cardDeletion(array, attribute, value) {
+    var index;
+    for(var i = 0; i < array.length; i += 1) {
+      if(array[i][attribute] === value) {
+          index = i;
+      }
+    }
+    console.log("the value: ", value)
+    console.log("the index: ", index)
+    if (index > -1) {
+      array.splice(index, 1);
+      flashcardCount -= 1
+      if (flashcardCount > 0) {
+        txt = "You've added " + flashcardCount + " flashcards to your set!";
+        document.getElementById("creationSuccess").innerHTML = txt;
+      } else {
+        document.getElementById("creationSuccess").style.display = "none";
+      }
+    }
+  }
+
   //When user clicks "delete" button, user is prompted to confirm then card is removed:
   deleteCard.onclick = function() {
     deleteConfirmed = confirm("Are you sure you want to delete this card?")
     if(deleteConfirmed){
-      console.log("delted card!")
+      cardDeletion(flashcardCollection, 'front', cardToDisplay.front)
+      console.log("the flashcards: ", flashcardCollection)
     }
   }
 
