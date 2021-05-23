@@ -117,6 +117,7 @@ cardDisplayButton.onclick = function() {
   var anotherCard = document.getElementById("anotherCard");
   var editFront = document.getElementById("editFront");
   var editBack = document.getElementById("editBack");
+  var deleteCard = document.getElementById("deleteCard");
 
   // When user clicks "back" button, show info from "back" of card:
   backButton.onclick = function() {
@@ -164,8 +165,16 @@ cardDisplayButton.onclick = function() {
     document.getElementById("cardBack").style.display = "none";
     document.getElementById("cardFront").style.display = "block";
     document.getElementById("cardFront").innerHTML = "<b>Front:</b> " + cardToDisplay.front;
-
   }
+
+  //When user clicks "delete" button, user is prompted to confirm then card is removed:
+  deleteCard.onclick = function() {
+    deleteConfirmed = confirm("Are you sure you want to delete this card?")
+    if(deleteConfirmed){
+      console.log("delted card!")
+    }
+  }
+
 
   // When the user clicks on <span> (x), close the modal
   span.onclick = function() {
