@@ -50,22 +50,30 @@ function flashcardWiki() {
   }
 }
 
-// WIP: create flashcards using movie sentiment service by Mateo Estrada
+// create flashcards using movie sentiment service by Mateo Estrada
 function flashcardMovie() {
   var movieTitle = prompt("Enter a movie title: ");
   var movieLines = prompt("Enter some movie lines: ");
+  var movieData = {
+    "title": movieTitle,
+    "input_text": movieLines
+  }
 
   // only add a flashcard if search is done, no new card if search is cancelled
   if (movieTitle && movieLines) {
     fetch('https://vibe-api-service.herokuapp.com/sentiment-analysis-long', {
       method: "POST",
-      body: {"title": movieTitle, "input_text": movieLines}
+      body: JSON.stringify(movieData),
+      headers: {"Content-type": "application/json; charset=UTF-8"}
     })
         .then(response => response.json())
-        .then(data => console.log(data));
+        .then(data => createFlashcard(movieTitle,
+        "<br>" + "<br>Overall sentiment (-1: most negative to 1: most positive): "
+        + data.compound
+        + "<br>Percent negative: " + Math.round(data.neg*100)
+        + "<br>Percent neutral: " + Math.round(data.neu*100)
+        + "<br>Percent positive: " + Math.round(data.pos*100)));
   }
-  alert("Adding some movie sentiment stuff to back!");
-
 }
 
 // The actual cards and their display:
