@@ -1,16 +1,3 @@
-// Display instructions on how to use in modal:
-  //the modal:
-var instructionModal = document.getElementById("instructionModal");
-
-  // the link to open the modal:
-var instructionDisplayLink = document.getElementById("instruction-link");
-
-instructionDisplayLink.onclick = function() {
-  console.log("something!")
-  instructionModal.style.display = "block";
-}
-
-
 // Flashcards will be added as objects collected into an array:
 flashcardCollection = [];
 flashcard = {
@@ -34,6 +21,23 @@ function createFlashcard(front, back) {
   txt = "You've added " + flashcardCount + " flashcards to your set!";
   document.getElementById("creationSuccess").innerHTML = txt;
   document.getElementById("clickForCards").style.display = "block";
+}
+
+// Display instructions on how to use in modal:
+  //the modal:
+var instructionModal = document.getElementById("instructionModal");
+
+  // the link to open the modal:
+var instructionDisplayLink = document.getElementById("instruction-link");
+
+instructionDisplayLink.onclick = function() {
+  instructionModal.style.display = "block";
+}
+
+  // close the Modal
+var closeInstructionsButton = document.getElementById("closeInstructions");
+closeInstructionsButton.onclick = function() {
+  instructionModal.style.display = "none";
 }
 
 // create flashcards by typing information into prompts that pop up on the screen
