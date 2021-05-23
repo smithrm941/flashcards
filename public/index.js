@@ -168,37 +168,42 @@ cardDisplayButton.onclick = function() {
     document.getElementById("cardFront").innerHTML = "<b>Front:</b> " + cardToDisplay.front;
   }
 
-  // delete card function (based on code from https://love2dev.com/blog/javascript-remove-from-array/)
+  // delete card function (based on code from https://stackoverflow.com/questions/7176908/how-to-get-index-of-object-by-its-property-in-javascript/22864817)
   function cardDeletion(array, attribute, value) {
+    // finding the index of the card to delete
     var index;
     for(var i = 0; i < array.length; i += 1) {
       if(array[i][attribute] === value) {
           index = i;
       }
     }
-    console.log("the value: ", value)
-    console.log("the index: ", index)
+    // all elements in array have index of 0 or higher
     if (index > -1) {
+      // card to delete is removed using its index via splice
       array.splice(index, 1);
+      // card count is updated and display is updated based on number of cards left
       flashcardCount -= 1
       if (flashcardCount > 0) {
         txt = "You've added " + flashcardCount + " flashcards to your set!";
         document.getElementById("creationSuccess").innerHTML = txt;
       } else {
         document.getElementById("creationSuccess").style.display = "none";
+        document.getElementById("clickForCards").style.display = "none";
       }
     }
   }
 
-  //When user clicks "delete" button, user is prompted to confirm then card is removed:
+  //When user clicks "delete" button, user is prompted to confirm before card is removed
+  // using delete function above:
   deleteCard.onclick = function() {
     deleteConfirmed = confirm("Are you sure you want to delete this card?")
     if(deleteConfirmed){
+      alert("Deleting " + cardToDisplay.front + " card!")
       cardDeletion(flashcardCollection, 'front', cardToDisplay.front)
       console.log("the flashcards: ", flashcardCollection)
+      cardModal.style.display = "none";
     }
   }
-
 
   // When the user clicks on <span> (x), close the modal
   span.onclick = function() {
