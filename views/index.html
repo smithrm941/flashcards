@@ -10,6 +10,8 @@
   <body>
     <div class="header">
      <h1 id="title">FLASHCARDS</h1>
+     <!-- Trigger/Open The Instruction Modal -->
+     <h3 id="instruction-link">How to Use</h3>
      <h3 id="header-link">Login - coming soon!</h3>
      <h3 id="header-link">Sign-Up - coming soon!</h3>
     </div>
@@ -33,17 +35,57 @@
     <div id="creationSuccess">
     </div>
 
-    <!-- Trigger/Open The Modal -->
+    <!-- Trigger/Open The Card Modal -->
     <div id="clickForCards">
       Click <button id="myBtn">Here</button> to use them!
     </div>
 
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
+    <!-- The Instruction Modal -->
+    <div id="instructionModal" class="modal">
 
       <!-- Modal content -->
       <div class="modal-content">
-        <span class="close">&times;</span>
+        <p>
+          <b>Welcome to the Flashcards app!</b>
+          <br/>
+          You're in the right place if you are looking to make flashcards to help you learn something new
+          but don't want to use paper.
+          <br />
+          <br />
+          <i>How to use:</i>
+          <br />
+          If you want to type out both the front and back of the cards yourself, click on the first box on the
+          screen to get started. You will be prompted to type content for each of the cards and in the lower
+          left corner there will be a count keeping track of how many cards you have made and a button to click
+          to actually use them.
+          <br />
+          <br />
+          <i>Don't want to come up with all the content yourself?</i>
+          <br />
+          <br />
+          So far, there are two other options for cards where you only have to come up with the front of the card and
+          the information on the back will be returned to you!
+          <br />
+          <br />
+          For the Wikipedia option, if your topic of choice has a wikipedia page, the information returned will be the first paragraph and you just have to enter the page name. If you are
+          interested in movie sentiment analysis, you have to do a little more work where you enter the name of a movie
+          as well as some lines from it and the analysis of the lines will be displayed on the back of the card created.
+          <br />
+          <br />
+          In the future, there may be more special topic cards incorporated but the basic functionality of prompts and
+          displaying a card count and display button will not change and there will always be the option of creating a set of cards with just one or all types of cards!
+
+        </p>
+        <button id="closeInstructions">Close</button>
+      </div>
+    </div>
+
+    <!-- The Card Modal -->
+    <div id="cardModal" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span id="closeCards" class="close">&times;</span>
         <p id="cardFront"></p>
         <p id="cardBack"></p>
         <button id="frontButton">Front</button>
@@ -53,7 +95,7 @@
         <button id="anotherCard">Another Card</button>
       </div>
 
-</div>
+    </div>
   </body>
   <script src="index.js"></script>
 </html>
