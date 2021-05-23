@@ -1,3 +1,15 @@
+// Display instructions on how to use in modal:
+  //the modal:
+var instructionModal = document.getElementById("instructionModal");
+
+  // the link to open the modal:
+var instructionDisplayLink = document.getElementById("instruction-link");
+
+instructionDisplayLink.onclick = function() {
+  console.log("something!")
+  instructionModal.style.display = "block";
+}
+
 
 // Flashcards will be added as objects collected into an array:
 flashcardCollection = [];

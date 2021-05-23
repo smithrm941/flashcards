@@ -10,7 +10,8 @@
   <body>
     <div class="header">
      <h1 id="title">FLASHCARDS</h1>
-     <h3 id="header-link">How to Use</h3>
+     <!-- Trigger/Open The Instruction Modal -->
+     <h3 id="instruction-link">How to Use</h3>
      <h3 id="header-link">Login - coming soon!</h3>
      <h3 id="header-link">Sign-Up - coming soon!</h3>
     </div>
@@ -34,12 +35,23 @@
     <div id="creationSuccess">
     </div>
 
-    <!-- Trigger/Open The Modal -->
+    <!-- Trigger/Open The Card Modal -->
     <div id="clickForCards">
       Click <button id="myBtn">Here</button> to use them!
     </div>
 
-    <!-- The Modal -->
+    <!-- The Instruction Modal -->
+    <div id="instructionModal" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <p>
+          Testing
+        </p>
+      </div>
+    </div>
+
+    <!-- The Card Modal -->
     <div id="cardModal" class="modal">
 
       <!-- Modal content -->
@@ -54,7 +66,7 @@
         <button id="anotherCard">Another Card</button>
       </div>
 
-</div>
+    </div>
   </body>
   <script src="index.js"></script>
 </html>

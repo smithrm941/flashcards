@@ -15,6 +15,11 @@
   text-align: left;
 }
 
+.header #instruction-link {
+  font-size: 25px;
+  text-align: left;
+}
+
 .flashcard-link {
   padding-top: 15px;
   text-align: center;
