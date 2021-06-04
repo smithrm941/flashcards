@@ -7,6 +7,8 @@ const bodyParser = require('body-parser');
 const app = express();
 app.use(express.static('public'));
 app.use('/', express.static(path.join(__dirname, '/public')));
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -14,7 +16,8 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.get('/', function (req, res) {
-    res.sendfile('./views/index.html');
+    // res.sendfile('./views/index');
+    res.render('index');
 });
 
 app.listen(PORT, () => console.log(
